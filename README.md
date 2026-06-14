@@ -108,10 +108,3 @@ student-result-system/
   list of records on every keystroke (no extra request) by matching the
   student name, roll number, or subject. The "✕" button clears the search.
 
-## Screenshots
-
-> Add screenshots of the running app here (home view, add form, search,
-> edit, delete confirmation) before submission.
-
----
-Submitted by: Srirani
