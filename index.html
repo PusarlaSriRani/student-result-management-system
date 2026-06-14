@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Result Register</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== Top Bar ===== -->
+  <header class="topbar">
+    <div class="topbar__brand">
+      <span class="brand__mark">§</span>
+      <div class="brand__text">
+        <h1>Result Register</h1>
+        <p>Student record &amp; performance ledger</p>
+      </div>
+    </div>
+
+    <div class="topbar__search">
+      <svg class="search__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+        <path d="M20 20L16.5 16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search by name, roll no, or subject…"
+        autocomplete="off"
+      />
+      <button id="clearSearch" class="search__clear" title="Clear search" aria-label="Clear search">&times;</button>
+    </div>
+
+    <button id="addToggleBtn" class="btn btn--primary">
+      <span class="btn__plus">+</span> New entry
+    </button>
+  </header>
+
+  <!-- ===== Add / Edit Form (slides down) ===== -->
+  <section id="formPanel" class="form-panel" hidden>
+    <form id="studentForm" class="form-grid">
+      <input type="hidden" id="recordId" />
+
+      <div class="field">
+        <label for="studentName">Student name</label>
+        <input type="text" id="studentName" required placeholder="e.g. K. Lakshmi" />
+      </div>
+
+      <div class="field">
+        <label for="rollNo">Roll number</label>
+        <input type="text" id="rollNo" required placeholder="e.g. 21A91A0512" />
+      </div>
+
+      <div class="field">
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" required placeholder="e.g. Operating Systems" />
+      </div>
+
+      <div class="field field--narrow">
+        <label for="marks">Marks <span class="field__hint">(out of 100)</span></label>
+        <input type="number" id="marks" min="0" max="100" required placeholder="0–100" />
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn--primary" id="submitBtn">Save entry</button>
+        <button type="button" class="btn btn--ghost" id="cancelBtn">Cancel</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- ===== Status / Stats Strip ===== -->
+  <section class="stats" id="statsStrip">
+    <div class="stat">
+      <span class="stat__value" id="statTotal">0</span>
+      <span class="stat__label">Total entries</span>
+    </div>
+    <div class="stat stat--pass">
+      <span class="stat__value" id="statPass">0</span>
+      <span class="stat__label">Pass</span>
+    </div>
+    <div class="stat stat--fail">
+      <span class="stat__value" id="statFail">0</span>
+      <span class="stat__label">Fail</span>
+    </div>
+    <div class="stat">
+      <span class="stat__value" id="statAvg">0%</span>
+      <span class="stat__label">Average %</span>
+    </div>
+  </section>
+
+  <!-- ===== Ledger / Records ===== -->
+  <main class="ledger-wrap">
+    <div class="ledger" id="ledger">
+      <div class="ledger__head">
+        <span class="col col--name">Student</span>
+        <span class="col col--roll">Roll no.</span>
+        <span class="col col--subject">Subject</span>
+        <span class="col col--marks">Marks</span>
+        <span class="col col--pct">Percentage</span>
+        <span class="col col--status">Status</span>
+        <span class="col col--actions">Actions</span>
+      </div>
+
+      <div id="recordsBody" class="ledger__body">
+        <!-- rows injected by script.js -->
+      </div>
+
+      <div id="emptyState" class="empty-state" hidden>
+        <p class="empty-state__title">No entries yet</p>
+        <p class="empty-state__text">Add your first student record using “New entry” above.</p>
+      </div>
+
+      <div id="noResults" class="empty-state" hidden>
+        <p class="empty-state__title">No matches</p>
+        <p class="empty-state__text">Nothing matches that search. Try a different name, roll number, or subject.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== Toast ===== -->
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
